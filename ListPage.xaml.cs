@@ -1,16 +1,16 @@
 namespace DotNetMaui;
 
-public partial class CartPage : ContentPage
+public partial class ListPage : ContentPage
 {
-    public CartPage(CartViewModel viewModel)
+    public ListPage(ListViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
     }
-    
+
     protected override void OnNavigatedTo(NavigatedToEventArgs args)
     {
         base.OnNavigatedTo(args);
-        ((CartViewModel)BindingContext).LoadCommand.Execute(null!);
+        ((ListViewModel)BindingContext).LoadCommand.Execute(null!);
     }
 }

@@ -1,15 +1,16 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DotNetMaui;
 
 public partial class OrderPage : ContentPage
 {
-    public OrderPage()
+    public OrderPage(OrderViewModel viewModel)
     {
         InitializeComponent();
+        BindingContext = viewModel;
+    }
+    
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        ((OrderViewModel)BindingContext).LoadCommand.Execute(null!);
     }
 }

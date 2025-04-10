@@ -1,6 +1,17 @@
 namespace DotNetMaui;
 
-public class OrderViewModel
+public partial class OrderViewModel : ObservableObject
 {
+
+    [RelayCommand]
+    async Task Load()
+    {
+        
+    }
     
+    [RelayCommand]
+    async Task PlaceOrder()
+    {
+        
+    }
 }

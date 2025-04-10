@@ -36,6 +36,13 @@
                 HorizontalOptions="Center" />
 
             <Button
+                x:Name="btnRealWorld"
+                Text="Real World Sample"
+                SemanticProperties.Hint="Real World Sample"
+                Clicked="BtnRealWorld_OnClicked"
+                HorizontalOptions="Center" />
+            
+            <Button
                 x:Name="ThrowAndCaptureBtn"
                 Text="Throw and Capture Exception"
                 SemanticProperties.Hint="Throws an exception and captures it."

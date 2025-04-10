@@ -2,22 +2,19 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dotNetMaui="clr-namespace:DotNetMaui"
-             x:DataType="dotNetMaui:CartViewModel"
-             x:Class="DotNetMaui.CartPage"
-             Title="Cart">
+             x:DataType="dotNetMaui:ListViewModel"
+             x:Class="DotNetMaui.ListPage"
+             Title="EmpowerPlant">
+    
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Order" Command="{Binding OrderCommand}" />
+        <ToolbarItem Text="Cart" Command="{Binding ViewCartCommand}"/>    
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <CollectionView>
-            <CollectionView.EmptyView>
-                <Label Text="No Items In Your Cart" />
-            </CollectionView.EmptyView>
-            
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    
+                    <Label Text="" />
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
