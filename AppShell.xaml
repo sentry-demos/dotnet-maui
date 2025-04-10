@@ -8,8 +8,17 @@
     Title="DotNetMaui">
 
     <ShellContent
-        Title="Home"
+        Title="EmpowerPlant"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Cart"
+        ContentTemplate="{DataTemplate local:CartPage}"
+        Route="CartPage" />
+    
+    <ShellContent
+        Title="Order"
+        ContentTemplate="{DataTemplate local:OrderPage}"
+        Route="OrderPage" />
 </Shell>
