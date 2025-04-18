@@ -14,18 +14,18 @@ public static class MauiProgram
 			.UseMauiApp<App>()
 			
 			// This adds Sentry to your Maui application
-            // .UseSentry(options =>
-            // {
-            //     // The DSN is the only required option.
-            //     options.Dsn = Configuration.SentryDsn;
-            //     options.Debug = true;
-            //     
-            //     // Block your user order data from going to Sentry
-            //     options.SendDefaultPii = false;
-            //     
-            //     // Attach screenshots on errors
-            //     options.AttachScreenshot = true;
-            // })
+            .UseSentry(options =>
+            {
+                // The DSN is the only required option.
+                options.Dsn = Configuration.SentryDsn;
+                options.Debug = true;
+                
+                // Block your user order data from going to Sentry
+                options.SendDefaultPii = false;
+                
+                // Attach screenshots on errors
+                options.AttachScreenshot = true;
+            })
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
