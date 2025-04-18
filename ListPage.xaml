@@ -2,8 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dotNetMaui="clr-namespace:DotNetMaui"
+             xmlns:models="clr-namespace:Empower.Models"
              x:DataType="dotNetMaui:ListViewModel"
              x:Class="DotNetMaui.ListPage"
+             NavigationPage.BackButtonTitle="Back"
              Title="EmpowerPlant">
     
     <ContentPage.ToolbarItems>
@@ -11,10 +13,30 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <CollectionView>
+        <CollectionView ItemsSource="{Binding LoadCommand}">
+            <CollectionView.EmptyView>
+                <Label Text="No Products Here!" />    
+            </CollectionView.EmptyView>
+            
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="" />
+                <DataTemplate x:DataType="models:Product">
+                    <Border>
+                        <Grid ColumnDefinitions="1*, 2*">
+                            <Image Source="{Binding ImgCropped}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Grid.Column="0"
+                                   Grid.Row="0" />
+                        
+                            <VerticalStackLayout Grid.Column="1" 
+                                                 Grid.Row="0">
+                                <Label Text="{Binding Description}" />
+                                <Label Text="{Binding Price, StringFormat='${0}'}" />
+                                <Button Text="Add to Cart"
+                                        Command="{Binding AddToCartCommand, Source={RelativeSource AncestorType={x:Type dotNetMaui:ListViewModel}}}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

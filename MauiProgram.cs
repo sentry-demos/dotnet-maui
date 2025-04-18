@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using DotNetMaui.Services;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetMaui;
 
 public static class MauiProgram
 {
+	public static bool DidCrashOnLastRun { get; private set; }
+	
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
@@ -14,8 +17,11 @@ public static class MauiProgram
             .UseSentry(options =>
             {
                 // The DSN is the only required option.
-                options.Dsn = "https://eb18e953812b41c3aeb042e666fd3b5c@o447951.ingest.sentry.io/5428537";
+                options.Dsn = Configuration.SentryDsn;
                 options.Debug = true;
+                
+                // Block your user order data from going to Sentry
+                options.SendDefaultPii = false;
                 
                 // Attach screenshots on errors
                 options.AttachScreenshot = true;
@@ -29,7 +35,7 @@ public static class MauiProgram
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
-
+		builder.Services.AddSingleton<IDataService, DataService>();
 		builder.Services.AddTransient<ListViewModel>();
 		builder.Services.AddTransient<CartViewModel>();
 		builder.Services.AddTransient<OrderViewModel>();

@@ -2,24 +2,51 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:dotNetMaui="clr-namespace:DotNetMaui"
+             xmlns:models="clr-namespace:Empower.Models"
              x:DataType="dotNetMaui:CartViewModel"
              x:Class="DotNetMaui.CartPage"
              Title="Cart">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Order" Command="{Binding OrderCommand}" />
-    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <CollectionView>
-            <CollectionView.EmptyView>
-                <Label Text="No Items In Your Cart" />
-            </CollectionView.EmptyView>
+        <Grid RowDefinitions="Auto, *, Auto">
             
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+            <HorizontalStackLayout Grid.Row="0">
+                <Label Text="{Binding CartCount, StringFormat='Sub-Total ({0} Item(s)): '}" 
+                       HorizontalOptions="Start"/>
+                
+                <Label Text="{Binding SubTotal, StringFormat='${0}'}" 
+                       HorizontalOptions="End"/>
+            </HorizontalStackLayout>
+            
+            <CollectionView ItemsSource="{Binding Cart}"
+                            Grid.Row="1">
+                <CollectionView.EmptyView>
+                    <Label Text="No Items In Your Cart" />
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Product">
+                        <Grid ColumnDefinitions="1*, 2*">
+                            <Image Source="{Binding ImgCropped}"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Grid.Column="0"
+                                   Grid.Row="0" />
+                            
+                            <VerticalStackLayout Grid.Column="1" 
+                                                 Grid.Row="0">
+                                <Label Text="{Binding Description}" />
+                                <Label Text="{Binding Price, StringFormat='${0}'}" />
+                                <Button Text="Delete"
+                                        Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type dotNetMaui:CartViewModel}}}"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            <Button Text="Proceed to Order" 
+                    Command="{Binding OrderCommand}" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

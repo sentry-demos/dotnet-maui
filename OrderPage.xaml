@@ -7,8 +7,46 @@
              Title="Order">
     
     <ContentPage.Content>
-        <VerticalStackLayout>
-            <Button Text="Place Order" Command="{Binding PlaceOrderCommand}" />
-        </VerticalStackLayout>
+        <Grid RowDefinitions="*, Auto">
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="10">
+                    <Entry Text="{Binding Email}"
+                           Placeholder="Email"
+                           Keyboard="Email" />
+                    
+                    <Entry Text="" 
+                           Placeholder="First Name"
+                           Keyboard="Text"/>
+                    
+                    <Entry Text="" 
+                           Placeholder="Last Name"
+                           Keyboard="Text"/>
+                    
+                    <Entry Text="" 
+                           Placeholder="Address" />
+
+                    <Entry Text="" 
+                           Placeholder="City" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="State" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="Country" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="Postal" 
+                           Keyboard="Text" />
+
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <Button Text="Place Order" 
+                    Command="{Binding PlaceOrderCommand}" 
+                    Grid.Row="1" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -7,10 +7,4 @@ public partial class OrderPage : ContentPage
         InitializeComponent();
         BindingContext = viewModel;
     }
-    
-    protected override void OnNavigatedTo(NavigatedToEventArgs args)
-    {
-        base.OnNavigatedTo(args);
-        ((OrderViewModel)BindingContext).LoadCommand.Execute(null!);
-    }
 }
