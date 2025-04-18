@@ -8,10 +8,11 @@ public partial class CartViewModel(IDataService dataService) : ObservableObject
     [ObservableProperty] 
     [NotifyPropertyChangedFor(nameof(CartCount))]
     [NotifyPropertyChangedFor(nameof(SubTotal))]
-    List<Product> cart;
+    [NotifyCanExecuteChangedFor(nameof(OrderCommand))]
+    List<Product> cart = new();
     
-    public int CartCount => Cart?.Count ?? 0;
-    public int SubTotal => Cart?.Sum(x => x.Price) ?? 0;
+    public int CartCount => Cart.Count;
+    public int SubTotal => Cart.Sum(x => x.Price);
     
     
     [RelayCommand]
@@ -24,6 +25,7 @@ public partial class CartViewModel(IDataService dataService) : ObservableObject
         this.LoadCommand.Execute(null!);
     }
     
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanOrder))]
     Task Order() => Shell.Current.GoToAsync("OrderPage");
+    bool CanOrder() => this.CartCount > 0;
 }

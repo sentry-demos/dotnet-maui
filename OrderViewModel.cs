@@ -25,7 +25,8 @@ public partial class OrderViewModel(
         try
         {
             await dataService.Checkout();
-            await Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("../..");
+            await Shell.Current.DisplayAlert("Thank You!", "Your order has been placed.", "Go Spend More");
         }
         catch (Exception ex)
         {

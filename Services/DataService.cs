@@ -31,6 +31,7 @@ public class DataService : IDataService
 
     public Task AddToCart(Product item)
     {
+        ArgumentNullException.ThrowIfNull(item);
         if (!this.cart.Any(x => x.Id == item.Id))
             this.cart.Add(item);
         
@@ -39,6 +40,8 @@ public class DataService : IDataService
 
     public Task RemoveFromCart(Product item)
     {
+        ArgumentNullException.ThrowIfNull(item);
+        
         var cartItem = this.cart.SingleOrDefault(x => x.Id == item.Id);
         if (cartItem != null)
             this.cart.Remove(cartItem);
@@ -46,7 +49,7 @@ public class DataService : IDataService
         return Task.CompletedTask;
     }
 
-    public Task<List<Product>> GetCartItems() => Task.FromResult(this.cart);
+    public Task<List<Product>> GetCartItems() => Task.FromResult(this.cart.ToList()); // cart externally should be imm
 
     public Task<List<Product>> GetProducts()
         => this.httpClient.GetFromJsonAsync<List<Product>>("/products")!;
