@@ -75,14 +75,14 @@ public class CtMvvmMauiElementEventBinder : IMauiElementEventBinder
     {
         if (command is IAsyncRelayCommand relayCommand)
         {
-            // necessary for collectionview buttons
-            if (_refs.Contains(relayCommand))
-                return;
-            
             if (bind)
             {
-                _refs.Add(relayCommand);
-                relayCommand.PropertyChanged += RelayCommandOnPropertyChanged;
+                // necessary for collectionview buttons
+                if (!_refs.Contains(relayCommand))
+                {
+                    _refs.Add(relayCommand);
+                    relayCommand.PropertyChanged += RelayCommandOnPropertyChanged;
+                }
             }
             else
             {
