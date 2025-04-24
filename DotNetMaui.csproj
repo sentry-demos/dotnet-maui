@@ -38,6 +38,17 @@
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 
+	<!-- https://docs.sentry.io/platforms/dotnet/guides/maui/configuration/msbuild/ -->
+	<!-- On GitHub actions, building for Release, upload debug symbols and include sources. Make sure 'SENTRY_AUTH_TOKEN' is set in the GHA workflow env vars -->
+	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(GITHUB_ACTIONS)' == 'true'">
+		<SentryOrg>demo</SentryOrg>
+		<SentryProject>dotnet-maui</SentryProject>
+		<SentryUploadSymbols>true</SentryUploadSymbols>
+		<!-- With sources in the PDB Sentry can already show source context -->
+		<!-- <SentryUploadSources>true</SentryUploadSources> -->
+		<EmbedAllSources>true</EmbedAllSources>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
