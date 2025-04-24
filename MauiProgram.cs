@@ -1,5 +1,6 @@
 ﻿using DotNetMaui.Services;
 using Microsoft.Extensions.Logging;
+using Sentry.Maui;
 
 namespace DotNetMaui;
 
@@ -38,6 +39,11 @@ public static class MauiProgram
 		builder.Services.AddTransient<ListViewModel>();
 		builder.Services.AddTransient<CartViewModel>();
 		builder.Services.AddTransient<OrderViewModel>();
+
+		// a sample maui element binder that allows us to observe controls moving through the MAUI view hierarchy
+		// this particular sample, will search out known command properties within a button or element gesture recognizers, to determine if the command
+		// is an MVVM Community Toolkit async relay command to auto create a span for its execution time
+		builder.Services.AddSingleton<IMauiElementEventBinder, CtMvvmMauiElementEventBinder>();
 
 		return builder.Build();
 	}
