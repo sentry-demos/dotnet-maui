@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DotNetMaui.ProductView">
+    <Border StrokeShape="RoundRectangle 10"
+            Padding="5">
+        <Grid ColumnDefinitions="1*, 2*"
+              RowDefinitions="1*, 1*, 1*"
+              ColumnSpacing="10"
+              RowSpacing="10">
+            
+            <Image x:Name="imgProduct" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Column="0"
+                   Grid.RowSpan="3" 
+                   BackgroundColor="AliceBlue"/>
+            
+            <Label x:Name="lblDescription"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   Grid.Column="1"
+                   Grid.Row="0" 
+                   VerticalTextAlignment="End" />
+        
+            <Label x:Name="lblPrice"
+                   FontSize="Small"
+                   FontAttributes="Italic"
+                   Grid.Column="1"
+                   Grid.Row="1" />
+            
+            <Button x:Name="btnAction"
+                    Grid.Column="1"
+                    Grid.Row="2" 
+                    VerticalOptions="Start"/>
+        </Grid>
+    </Border>
+</ContentView>

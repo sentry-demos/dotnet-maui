@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:dotNetMaui="clr-namespace:DotNetMaui"
+             x:DataType="dotNetMaui:OrderViewModel"
+             x:Class="DotNetMaui.OrderPage"
+             Title="Order">
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <ScrollView Grid.Row="0">
+                <VerticalStackLayout Spacing="10">
+                    <Entry Text="{Binding Email}"
+                           Placeholder="Email"
+                           Keyboard="Email" />
+                    
+                    <Entry Text="" 
+                           Placeholder="First Name"
+                           Keyboard="Text"/>
+                    
+                    <Entry Text="" 
+                           Placeholder="Last Name"
+                           Keyboard="Text"/>
+                    
+                    <Entry Text="" 
+                           Placeholder="Address" />
+
+                    <Entry Text="" 
+                           Placeholder="City" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="State" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="Country" 
+                           Keyboard="Text" />
+
+                    <Entry Text="" 
+                           Placeholder="Postal" 
+                           Keyboard="Text" />
+
+                </VerticalStackLayout>
+            </ScrollView>
+            
+            <Button Text="Place Order" 
+                    Command="{Binding PlaceOrderCommand}" 
+                    Grid.Row="1" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

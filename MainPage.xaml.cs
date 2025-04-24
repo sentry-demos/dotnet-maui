@@ -87,4 +87,9 @@ public partial class MainPage
 #pragma warning restore CS0618
 #endif
     }
+
+    async void BtnRealWorld_OnClicked(object? sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("ListPage", true);
+    }
 }
