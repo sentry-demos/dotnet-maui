@@ -35,7 +35,7 @@ public partial class OrderViewModel(
             ex.Data.Add("LostRevenue", subTotal);
             
             // this logger, while not sentry specific is completely plugged into Sentry as well
-            logger.LogError(ex, "Erro placing an order");
+            logger.LogError(ex, "Error placing an order");
 
             await Shell.Current.DisplayAlert("Error", "There was an error processing your order", "Ok");
         }

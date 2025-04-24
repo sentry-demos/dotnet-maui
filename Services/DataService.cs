@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using Empower.Models;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetMaui.Services;
 
@@ -14,7 +15,7 @@ public interface IDataService
     Task<List<Product>> GetProducts();
 }
 
-public class DataService : IDataService
+public class DataService(ILogger<DataService> logger) : IDataService
 {
     readonly HttpClient httpClient = new(new SentryHttpMessageHandler())
     {
@@ -35,6 +36,8 @@ public class DataService : IDataService
         if (!this.cart.Any(x => x.Id == item.Id))
             this.cart.Add(item);
         
+        // Informational logs become Sentry breadcrumbs automatically.
+        logger.LogInformation("Adding product to cart: {productId} - {productName}", item.Id, item.Description);
         return Task.CompletedTask;
     }
 
@@ -45,6 +48,9 @@ public class DataService : IDataService
         var cartItem = this.cart.SingleOrDefault(x => x.Id == item.Id);
         if (cartItem != null)
             this.cart.Remove(cartItem);
+        
+        // Informational logs become Sentry breadcrumbs automatically.
+        logger.LogInformation("Adding product to cart: {productId} - {productName}", item.Id, item.Description);
         
         return Task.CompletedTask;
     }

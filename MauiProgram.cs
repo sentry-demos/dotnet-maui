@@ -5,7 +5,6 @@ namespace DotNetMaui;
 
 public static class MauiProgram
 {
-	public static bool DidCrashOnLastRun { get; private set; }
 	
 	public static MauiApp CreateMauiApp()
 	{
@@ -20,8 +19,8 @@ public static class MauiProgram
                 options.Dsn = Configuration.SentryDsn;
                 options.Debug = true;
                 
-                // Block your user order data from going to Sentry
-                options.SendDefaultPii = false;
+                // Set to false if you want to prevent your user order data from going to Sentry
+                options.SendDefaultPii = true;
                 
                 // Attach screenshots on errors
                 options.AttachScreenshot = true;
