@@ -13,7 +13,8 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <RefreshView Command="{Binding LoadCommand}">
+        <RefreshView Command="{Binding LoadCommand}"
+                     IsRefreshing="{Binding LoadCommand.IsRunning}">
             <CollectionView ItemsSource="{Binding Products}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"

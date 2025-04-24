@@ -6,15 +6,10 @@ namespace DotNetMaui;
 public partial class ListViewModel(IDataService dataService) : ObservableObject
 {
     [ObservableProperty] List<Product> products;
-    [ObservableProperty] bool isBusy;
 
+    // we should safety these calls to prevent network blips from crashing our app, but Sentry has got us for reporting if it does
     [RelayCommand]
-    async Task Load()
-    {
-        this.IsBusy = true;
-        this.Products = await dataService.GetProducts();
-        this.IsBusy = false;
-    }
+    async Task Load() => this.Products = await dataService.GetProducts();
 
     [RelayCommand]
     async Task AddToCart(Product product)

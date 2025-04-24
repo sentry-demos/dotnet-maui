@@ -7,8 +7,6 @@ namespace DotNetMaui.Services;
 public interface IDataService
 {
     Task Checkout();
-
-    // no quantity - Bruno didn't like data models on the server :)
     Task AddToCart(Product item);
     Task RemoveFromCart(Product item);
     Task<List<Product>> GetCartItems();
