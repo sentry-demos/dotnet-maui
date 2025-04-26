@@ -40,7 +40,8 @@
 
 	<!-- https://docs.sentry.io/platforms/dotnet/guides/maui/configuration/msbuild/ -->
 	<!-- On GitHub actions, building for Release, upload debug symbols and include sources. Make sure 'SENTRY_AUTH_TOKEN' is set in the GHA workflow env vars -->
-	<PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(GITHUB_ACTIONS)' == 'true'">
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+
 		<SentryOrg>demo</SentryOrg>
 		<SentryProject>dotnet-maui</SentryProject>
 		<SentryUploadSymbols>true</SentryUploadSymbols>
