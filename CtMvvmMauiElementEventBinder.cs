@@ -70,30 +70,21 @@ public class CtMvvmMauiElementEventBinder : IMauiElementEventBinder
         }
     }
 
-    static List<IAsyncRelayCommand> _refs = [];
     private static void TryBindTo(ICommand? command, bool bind)
     {
         if (command is IAsyncRelayCommand relayCommand)
         {
+            relayCommand.PropertyChanged -= RelayCommandOnPropertyChanged;
+            
             if (bind)
             {
-                // necessary for collectionview buttons
-                if (!_refs.Contains(relayCommand))
-                {
-                    _refs.Add(relayCommand);
-                    relayCommand.PropertyChanged += RelayCommandOnPropertyChanged;
-                }
-            }
-            else
-            {
-                _refs.Remove(relayCommand);
-                relayCommand.PropertyChanged -= RelayCommandOnPropertyChanged;
+                relayCommand.PropertyChanged += RelayCommandOnPropertyChanged;
             }
         }
     }
 
 
-    static ConcurrentDictionary<IAsyncRelayCommand, (ITransactionTracer Transaction, ISpan Span)> _contexts = new();
+    static ConcurrentDictionary<IAsyncRelayCommand, ITransactionTracer> _contexts = new();
 
     private static void RelayCommandOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
     {
@@ -103,14 +94,12 @@ public class CtMvvmMauiElementEventBinder : IMauiElementEventBinder
 
             if (relay.IsRunning)
             {
-                var transaction = SentrySdk.StartTransaction("ctmvvm", "asynccommand");
-                var span = transaction.StartChild("run");
-                _contexts.TryAdd(relay, (transaction, span));
+                var transaction = SentrySdk.StartTransaction("ctmvvm", "async.command");
+                _contexts.TryAdd(relay, transaction);
             }
             else if (_contexts.TryGetValue(relay, out var value))
             {
-                value.Span.Finish();
-                value.Transaction.Finish();
+                value.Finish();
                 _contexts.TryRemove(relay, out _);
             }
         }
