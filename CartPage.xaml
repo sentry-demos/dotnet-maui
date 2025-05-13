@@ -46,6 +46,7 @@
         
         <Button Text="Proceed to Order"
                 Command="{Binding OrderCommand}"
+                AutomationId="Proceed_to_Order"
                 Grid.Row="1" />
     </Grid>
 </ContentPage>

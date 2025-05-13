@@ -45,7 +45,8 @@
             </ScrollView>
             
             <Button Text="Place Order" 
-                    Command="{Binding PlaceOrderCommand}" 
+                    Command="{Binding PlaceOrderCommand}"
+                    AutomationId="Place_Order"
                     Grid.Row="1" />
         </Grid>
     </ContentPage.Content>

@@ -32,6 +32,7 @@
             <Button x:Name="btnAction"
                     Grid.Column="1"
                     Grid.Row="2" 
+                    AutomationId="Add_to_Cart_{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=ItemsSource.IndexOf(.)}"
                     VerticalOptions="Start"/>
         </Grid>
     </Border>
