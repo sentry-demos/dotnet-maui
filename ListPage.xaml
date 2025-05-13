@@ -9,7 +9,7 @@
              Title="EmpowerPlant">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cart" Command="{Binding ViewCartCommand}"/>    
+        <ToolbarItem Text="Cart" Command="{Binding ViewCartCommand}" AutomationId="Cart"/>    
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>

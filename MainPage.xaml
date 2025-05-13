@@ -40,6 +40,7 @@
                 x:Name="btnRealWorld"
                 Text="Real World Sample"
                 SemanticProperties.Hint="Real World Sample"
+                AutomationId="Real_World_Sample"
                 Clicked="BtnRealWorld_OnClicked"
                 HorizontalOptions="Center" />
             
