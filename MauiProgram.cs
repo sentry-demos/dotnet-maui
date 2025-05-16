@@ -1,8 +1,8 @@
-﻿using DotNetMaui.Services;
+﻿using EmpowerPlant.Services;
 using Microsoft.Extensions.Logging;
 using Sentry.Maui;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public static class MauiProgram
 {
@@ -17,7 +17,7 @@ public static class MauiProgram
             .UseSentry(options =>
             {
                 // The DSN is the only required option.
-                options.Dsn = Configuration.SentryDsn;
+                options.Dsn = EmpowerPlantConfiguration.SentryDsn;
                 options.Debug = true;
                 
                 // Set to false if you want to prevent your user order data from going to Sentry

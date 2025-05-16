@@ -1,7 +1,7 @@
-using DotNetMaui.Services;
-using Empower.Models;
+using EmpowerPlant.Services;
+using EmpowerPlant.Models;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public partial class CartViewModel(IDataService dataService) : ObservableObject
 {

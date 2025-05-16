@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Sentry.Maui;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 
 /// <summary>
