@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 using Empower.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DotNetMaui.Services;
+namespace EmpowerPlant.Services;
 
 public interface IDataService
 {

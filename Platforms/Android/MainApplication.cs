@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 [Application]
 public class MainApplication : MauiApplication

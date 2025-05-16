@@ -1,6 +1,6 @@
 ﻿using Foundation;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 [Register("AppDelegate")]
 public class AppDelegate : MauiUIApplicationDelegate
