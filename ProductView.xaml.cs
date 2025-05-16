@@ -89,7 +89,6 @@ public partial class ProductView : ContentView
         set => SetValue(CommandParameterProperty, value);
     }
 
-
     protected override void OnPropertyChanged(string propertyName = null)
     {
         base.OnPropertyChanged(propertyName);
