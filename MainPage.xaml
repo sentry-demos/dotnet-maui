@@ -23,7 +23,7 @@
                 HorizontalOptions="Center" />
 
             <Button
-                x:Name="btnRealWorld"
+                x:Name="btnShopForPlants"
                 Text="Shop for plants"
                 SemanticProperties.Hint="Shop for plants at empower plant"
                 AutomationId="Shop_For_Plants"

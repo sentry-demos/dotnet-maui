@@ -70,7 +70,7 @@ public partial class MainPage
 #endif
     }
 
-    async void BtnRealWorld_OnClicked(object? sender, EventArgs e)
+    async void BtnShopForPlants_OnClicked(object? sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("ListPage", true);
     }

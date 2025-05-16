@@ -1,6 +1,5 @@
 using System.Net.Http.Json;
 using EmpowerPlant.Models;
-using EmpowerPlant;
 using Microsoft.Extensions.Logging;
 
 namespace EmpowerPlant.Services;

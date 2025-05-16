@@ -1,5 +1,4 @@
 ﻿using EmpowerPlant.Services;
-using EmpowerPlant;
 using Microsoft.Extensions.Logging;
 using Sentry.Maui;
 
