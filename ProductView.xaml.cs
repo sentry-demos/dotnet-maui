@@ -89,6 +89,25 @@ public partial class ProductView : ContentView
         set => SetValue(CommandParameterProperty, value);
     }
 
+    public static BindableProperty IndexProperty = BindableProperty.Create(
+        nameof(Index),
+        typeof(int),
+        typeof(ProductView),
+        defaultValue: -1,
+        propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            if (bindable is ProductView view)
+            {
+                view.btnAction.AutomationId = $"Add_to_Cart_{newValue}";
+            }
+        }
+    );
+
+    public int Index
+    {
+        get => (int)GetValue(IndexProperty);
+        set => SetValue(IndexProperty, value);
+    }
 
     protected override void OnPropertyChanged(string propertyName = null)
     {
