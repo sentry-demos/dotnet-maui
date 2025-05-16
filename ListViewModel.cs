@@ -1,5 +1,5 @@
 using EmpowerPlant.Services;
-using Empower.Models;
+using EmpowerPlant.Models;
 
 namespace EmpowerPlant;
 

@@ -8,7 +8,7 @@
     Title="EmpowerPlant">
 
     <ShellContent
-        Title="Home"
+        Title="Welcome to Empower Plant"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 </Shell>

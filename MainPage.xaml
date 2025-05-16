@@ -11,37 +11,23 @@
             VerticalOptions="Center">
 
             <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                Source="logo_empower_plant.png"
+                SemanticProperties.Description="Empower Plant Logo"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
             <Label
-                Text="Hello, World!"
+                Text="Empower Plant!"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click."
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
             <Button
                 x:Name="btnRealWorld"
-                Text="Real World Sample"
-                SemanticProperties.Hint="Real World Sample"
-                AutomationId="Real_World_Sample"
-                Clicked="BtnRealWorld_OnClicked"
+                Text="Shop for plants"
+                SemanticProperties.Hint="Shop for plants at empower plant"
+                AutomationId="Shop_For_Plants"
+                Clicked="BtnShopForPlants_OnClicked"
                 HorizontalOptions="Center" />
             
             <Button
