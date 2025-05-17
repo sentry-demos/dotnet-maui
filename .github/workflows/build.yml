@@ -76,8 +76,7 @@ jobs:
       with:
         name: EmpowerPlant-MAUI-Windows
         if-no-files-found: error
-        # path: bin\net9.0-windows10.0.19041.0\win10-x64\publish\
-        path: bin\net9.0-windows10.0.19041.0\
+        path: bin\Release\net9.0-windows10.0.19041.0\win10-x64
 
     - name: Package Android app
       uses: actions/upload-artifact@v4
@@ -85,8 +84,7 @@ jobs:
       with:
         name: EmpowerPlant-MAUI-Android
         if-no-files-found: error
-        # path: bin\net9.0-android\publish\
-        path: bin\net9.0-android\
+        path: bin\Release\net9.0-android\
 
     - name: Package macOS app
       uses: actions/upload-artifact@v4
