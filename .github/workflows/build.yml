@@ -60,10 +60,24 @@ jobs:
       if: ${{ (runner.os == 'macOS') }}
       run: dotnet publish -f net9.0-maccatalyst -p:CreatePackage=false
 
-    - name: Publish iOS - Simulator
+    - name: Build for iOS - Simulator
       if: ${{ (runner.os == 'macOS') }}
-      run: dotnet publish -f net9.0-ios -r iossimulator-x64
+      # Can't 'publish' for a simulator
+      run: dotnet build -c Release -f net9.0-ios -r iossimulator-x64
 
+    # Need signing set up
     # - name: Publish iOS
     #   if: ${{ (runner.os == 'macOS') }}
     #   run: dotnet publish -f net9.0-ios
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'Windows') }}
+      with:
+        name: EmpowerPlant-Windows
+        path: bin\
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'macOS') }}
+      with:
+        name: EmpowerPlant-Mac
+        path: bin/
