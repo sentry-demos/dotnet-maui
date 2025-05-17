@@ -17,7 +17,9 @@
     The project is configured to [upload symbols on build automatically via MSBuild](https://docs.sentry.io/platforms/dotnet/guides/maui/configuration/msbuild/).  
     It requires an auth token set in the environment:  
 
-        `SENTRY_AUTH_TOKEN`
+    ```
+    SENTRY_AUTH_TOKEN
+    ```
     
     By default pointing to the Sentry `demo` org, on the `dotnet-maui` project.
     You can [override that directly on the `csproj` file](DotNetMaui.csproj#L45-L46),
