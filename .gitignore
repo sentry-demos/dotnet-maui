@@ -482,3 +482,6 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+dotnet-maui-android.apk
+dotnet-maui-ios-x64.zip
