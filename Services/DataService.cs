@@ -17,7 +17,7 @@ public class DataService(ILogger<DataService> logger) : IDataService
 {
     readonly HttpClient httpClient = new(new SentryHttpMessageHandler())
     {
-        BaseAddress = new(Configuration.BackendUrl)
+        BaseAddress = new(EmpowerPlantConfiguration.BackendUrl)
     };
     readonly List<Product> cart = new();
     

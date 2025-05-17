@@ -27,24 +27,6 @@ public partial class MainPage
         base.OnAppearing();
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
-    {
-        _count++;
-
-        if (_count == 1)
-        {
-            CounterBtn.Text = $"Clicked {_count} time";
-        }
-        else
-        {
-            CounterBtn.Text = $"Clicked {_count} times";
-        }
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
-
-        _logger.LogInformation("The button has been clicked {ClickCount} times", _count);
-    }
-
     private void OnUnhandledExceptionClicked(object sender, EventArgs e)
     {
 #pragma warning disable CS0618
@@ -88,7 +70,7 @@ public partial class MainPage
 #endif
     }
 
-    async void BtnRealWorld_OnClicked(object? sender, EventArgs e)
+    async void BtnShopForPlants_OnClicked(object? sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("ListPage", true);
     }
