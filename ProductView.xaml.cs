@@ -1,7 +1,7 @@
 using System.Windows.Input;
-using Empower.Models;
+using EmpowerPlant.Models;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public partial class ProductView : ContentView
 {

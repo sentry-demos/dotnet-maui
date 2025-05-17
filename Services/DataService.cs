@@ -1,8 +1,8 @@
 using System.Net.Http.Json;
-using Empower.Models;
+using EmpowerPlant.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DotNetMaui.Services;
+namespace EmpowerPlant.Services;
 
 public interface IDataService
 {
@@ -17,7 +17,7 @@ public class DataService(ILogger<DataService> logger) : IDataService
 {
     readonly HttpClient httpClient = new(new SentryHttpMessageHandler())
     {
-        BaseAddress = new(Configuration.BackendUrl)
+        BaseAddress = new(EmpowerPlantConfiguration.BackendUrl)
     };
     readonly List<Product> cart = new();
     

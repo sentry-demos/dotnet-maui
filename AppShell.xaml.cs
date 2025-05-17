@@ -1,4 +1,4 @@
-﻿namespace DotNetMaui;
+﻿namespace EmpowerPlant;
 
 public partial class AppShell : Shell
 {

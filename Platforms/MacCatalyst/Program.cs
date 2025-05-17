@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using UIKit;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public class Program
 {

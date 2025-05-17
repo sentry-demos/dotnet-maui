@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:dotNetMaui="clr-namespace:DotNetMaui"
-             xmlns:models="clr-namespace:Empower.Models"
-             x:DataType="dotNetMaui:ListViewModel"
-             x:Class="DotNetMaui.ListPage"
+             xmlns:empowerPlant="clr-namespace:EmpowerPlant"
+             xmlns:models="clr-namespace:EmpowerPlant.Models"
+             x:DataType="empowerPlant:ListViewModel"
+             x:Class="EmpowerPlant.ListPage"
              NavigationPage.BackButtonTitle="Back"
              Title="EmpowerPlant">
     
@@ -27,9 +27,9 @@
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Product">
-                        <dotNetMaui:ProductView Product="{Binding .}" 
+                        <empowerPlant:ProductView Product="{Binding .}" 
                                                 ActionText="Add to Cart"
-                                                Command="{Binding AddToCartCommand, Source={RelativeSource AncestorType={x:Type dotNetMaui:ListViewModel}}}"/>
+                                                Command="{Binding AddToCartCommand, Source={RelativeSource AncestorType={x:Type empowerPlant:ListViewModel}}}"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

@@ -1,4 +1,4 @@
-namespace Empower.Models;
+namespace EmpowerPlant.Models;
 
 public class Product
 {
