@@ -1,5 +1,5 @@
 using EmpowerPlant.Services;
-using Empower.Models;
+using EmpowerPlant.Models;
 using Microsoft.Extensions.Logging;
 
 namespace EmpowerPlant;

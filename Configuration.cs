@@ -1,4 +1,4 @@
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public static class Configuration
 {
