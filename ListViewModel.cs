@@ -1,7 +1,7 @@
-using DotNetMaui.Services;
+using EmpowerPlant.Services;
 using Empower.Models;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public partial class ListViewModel(IDataService dataService) : ObservableObject
 {

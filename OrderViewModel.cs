@@ -1,8 +1,8 @@
-using DotNetMaui.Services;
+using EmpowerPlant.Services;
 using Empower.Models;
 using Microsoft.Extensions.Logging;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public partial class OrderViewModel(
     ILogger<OrderViewModel> logger,

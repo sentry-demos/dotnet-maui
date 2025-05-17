@@ -22,7 +22,7 @@
     ```
     
     By default pointing to the Sentry `demo` org, on the `dotnet-maui` project.
-    You can [override that directly on the `csproj` file](DotNetMaui.csproj#L45-L46),
+    You can [override that directly on the `csproj` file](EmpowerPlant.csproj#L45-L46),
     or set the following build properties (append them to the build command below):
 
     `-p:SentryOrg={org} -p:SentryProject={proj}`

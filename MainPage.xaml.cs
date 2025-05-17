@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 public partial class MainPage
 {
     private readonly ILogger<MainPage> _logger;

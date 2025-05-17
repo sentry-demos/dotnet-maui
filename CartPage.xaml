@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:dotNetMaui="clr-namespace:DotNetMaui"
+             xmlns:empowerPlant="clr-namespace:EmpowerPlant"
              xmlns:models="clr-namespace:Empower.Models"
-             x:DataType="dotNetMaui:CartViewModel"
-             x:Class="DotNetMaui.CartPage"
+             x:DataType="empowerPlant:CartViewModel"
+             x:Class="EmpowerPlant.CartPage"
              Title="Cart">
     
     <Grid RowDefinitions="*, Auto">
@@ -36,9 +36,9 @@
                 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Product">
-                        <dotNetMaui:ProductView Product="{Binding .}" 
+                        <empowerPlant:ProductView Product="{Binding .}" 
                                                 ActionText="Remove" 
-                                                Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type dotNetMaui:CartViewModel}}}"/>
+                                                Command="{Binding RemoveCommand, Source={RelativeSource AncestorType={x:Type empowerPlant:CartViewModel}}}"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

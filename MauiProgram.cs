@@ -1,8 +1,8 @@
-﻿using DotNetMaui.Services;
+﻿using EmpowerPlant.Services;
 using Microsoft.Extensions.Logging;
 using Sentry.Maui;
 
-namespace DotNetMaui;
+namespace EmpowerPlant;
 
 public static class MauiProgram
 {
