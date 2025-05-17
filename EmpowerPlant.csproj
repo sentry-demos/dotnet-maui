@@ -40,6 +40,12 @@
     	<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation> 
 	</PropertyGroup>
 
+	<!-- https://learn.microsoft.com/en-us/dotnet/maui/windows/deployment/publish-unpackaged-cli?view=net-maui-9.0 -->
+	<!-- https://github.com/microsoft/WindowsAppSDK/issues/3337 -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(RuntimeIdentifierOverride)' != ''">
+    	<RuntimeIdentifier>$(RuntimeIdentifierOverride)</RuntimeIdentifier>
+	</PropertyGroup>
+
 	<!-- https://docs.sentry.io/platforms/dotnet/guides/maui/configuration/msbuild/ -->
 	<!-- Since this is a demo, we want good quality stack traces even in Debug builds, so always upload -->
 	<PropertyGroup>

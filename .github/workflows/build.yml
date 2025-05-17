@@ -1,0 +1,103 @@
+name: Build Empower Plant .NET MAUI
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+  pull_request:
+    paths-ignore:
+      - "**.md"
+
+env:
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_NOLOGO: 1
+
+jobs:
+  build:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # error MT4162: The type 'ScreenCaptureKit.SCDisplay' (used as a parameter in ScreenCaptureKit.SCContentFilter._InitWithDisplayExcludingApplications) is not available in MacCatalyst 18.0 (it was introduced in MacCatalyst 18.2). Please build with a newer MacCatalyst SDK (usually done by using the most recent version of Xcode)
+    - name: Select Xcode version
+      if: ${{ (runner.os == 'macOS') }}
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.3'
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Install .NET MAUI
+      run: dotnet workload install maui
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # - name: Build Release
+    #   run: dotnet build -c Release
+
+    - name: Publish Windows
+      if: ${{ (runner.os == 'Windows') }}
+      run: dotnet publish -f net9.0-windows10.0.19041.0 -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
+
+    - name: Publish Android
+      if: ${{ (runner.os == 'Windows') }}
+      run: dotnet publish -f net9.0-android
+
+    - name: Publish macOS
+      if: ${{ (runner.os == 'macOS') }}
+      run: dotnet publish -f net9.0-maccatalyst -p:CreatePackage=false
+
+    - name: Build for iOS - Simulator
+      if: ${{ (runner.os == 'macOS') }}
+      # Can't 'publish' for a simulator
+      run: dotnet build EmpowerPlant.csproj -c Release -f net9.0-ios -r iossimulator-x64
+
+    # Need signing set up
+    # - name: Publish iOS
+    #   if: ${{ (runner.os == 'macOS') }}
+    #   run: dotnet publish -f net9.0-ios
+
+    - name: Package Windows app
+      uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'Windows') }}
+      with:
+        name: EmpowerPlant-MAUI-Windows
+        if-no-files-found: error
+        path: bin\Release\net9.0-windows10.0.19041.0\win10-x64
+
+    - name: Package Android app
+      uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'Windows') }}
+      with:
+        name: EmpowerPlant-MAUI-Android
+        if-no-files-found: error
+        path: bin\Release\net9.0-android\
+
+    - name: Package macOS app
+      uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'macOS') }}
+      with:
+        name: EmpowerPlant-MAUI-macOS
+        if-no-files-found: error
+        path: bin/Release/net9.0-maccatalyst/
+
+    - name: Package iOS app
+      uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'macOS') }}
+      with:
+        name: EmpowerPlant-MAUI-iOS
+        if-no-files-found: error
+        path: bin/Release/net9.0-ios/iossimulator-x64/
