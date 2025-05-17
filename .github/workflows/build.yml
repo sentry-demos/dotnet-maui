@@ -63,21 +63,35 @@ jobs:
     - name: Build for iOS - Simulator
       if: ${{ (runner.os == 'macOS') }}
       # Can't 'publish' for a simulator
-      run: dotnet build -c Release -f net9.0-ios -r iossimulator-x64
+      run: dotnet build EmpowerPlant.csproj -c Release -f net9.0-ios -r iossimulator-x64
 
     # Need signing set up
     # - name: Publish iOS
     #   if: ${{ (runner.os == 'macOS') }}
     #   run: dotnet publish -f net9.0-ios
 
-    - uses: actions/upload-artifact@v4
+    - name: Package Windows app
+      uses: actions/upload-artifact@v4
       if: ${{ (runner.os == 'Windows') }}
       with:
-        name: EmpowerPlant-Windows
-        path: bin\
+        name: EmpowerPlant-MAUI-Windows
+        path: bin\net9.0-windows10.0.19041.0\win10-x64\publish\
+
+    - name: Package Android app
+      uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'Windows') }}
+      with:
+        name: EmpowerPlant-MAUI-Android
+        path: bin\net9.0-android\publish\
 
     - uses: actions/upload-artifact@v4
       if: ${{ (runner.os == 'macOS') }}
       with:
-        name: EmpowerPlant-Mac
-        path: bin/
+        name: EmpowerPlant-MAUI-macOS
+        path: bin/Release/net9.0-maccatalyst/
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ (runner.os == 'macOS') }}
+      with:
+        name: EmpowerPlant-MAUI-iOS
+        path: bin/Release/net9.0-ios/iossimulator-x64/
