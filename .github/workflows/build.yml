@@ -26,13 +26,37 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 9.0.x
+
     - name: Install .NET MAUI
       run: dotnet workload install maui
+
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build Release
-      run: dotnet build -c Release
+
+    # - name: Build Release
+    #   run: dotnet build -c Release
+
+    - name: Publish Windows
+      if: ${{ (runner.os == 'Windows') }}
+      run: dotnet publish -f net9.0-windows10.0.19041.0 -p:RuntimeIdentifierOverride=win10-x64 -p:WindowsPackageType=None -p:WindowsAppSDKSelfContained=true
+
+    - name: Publish Android
+      if: ${{ (runner.os == 'Windows') }}
+      run: dotnet publish -f net9.0-android
+
+    - name: Publish macOS
+      if: ${{ (runner.os == 'macOS') }}
+      run: dotnet publish -f net9.0-maccatalyst -p:CreatePackage=false
+
+    - name: Publish iOS
+      if: ${{ (runner.os == 'macOS') }}
+      run: dotnet publish -f net9.0-ios
+
+    - name: Publish iOS - Simulator
+      if: ${{ (runner.os == 'macOS') }}
+      run: dotnet publish -f net9.0-ios -r iossimulator-x64
