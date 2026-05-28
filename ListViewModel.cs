@@ -1,5 +1,6 @@
 using EmpowerPlant.Services;
 using EmpowerPlant.Models;
+using Sentry;
 
 namespace EmpowerPlant;
 
@@ -19,5 +20,10 @@ public partial class ListViewModel(IDataService dataService) : ObservableObject
     }
 
     [RelayCommand]
-    Task ViewCart() => Shell.Current.GoToAsync("CartPage");
+    Task ViewCart()
+    {
+        var ex = new InvalidOperationException("Cart service unavailable");
+        SentrySdk.CaptureException(ex);
+        throw ex;
+    }
 }
